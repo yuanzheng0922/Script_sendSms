@@ -39,14 +39,27 @@ class Send_Msg(object):  # 创建单例模式
             cls._isinstance = obj
         return cls._isinstance
 
+
     def send_sms(self,to,datas,tempId):
+        # 调用REST的sendTemplatesSMS方法 (手机号码,内容数据,模板Id)
         result = self.rest.sendTemplateSMS(to, datas, tempId)
+        # print result
         if result['statusCode'] == '000000':
             return 1
         else:
             return 0
 
-# def sendTemplateSMS(to,datas,tempId):
+''' 
+发送成功返回的值
+{'templateSMS': {'smsMessageSid': '4983cd02cb8a49e68056bdb974937bce', 'dateCreated': '20180509095052'},
+             'statusCode': '000000'}
+'''
+
+
+
+
+
+            # def sendTemplateSMS(to,datas,tempId):
 #     #初始化REST SDK
 #     rest = REST(serverIP,serverPort,softVersion)
 #     rest.setAccount(accountSid,accountToken)
